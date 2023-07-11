@@ -2,14 +2,15 @@ import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
 
-function Meals() {
+function Drinks() {
   return (
     <div>
       <Header />
-      <div>MEALS</div>
+      <div>DRINKS</div>
       <Footer />
     </div>
+
   );
 }
 
-export default Meals;
+export default Drinks;
