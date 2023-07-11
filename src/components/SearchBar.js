@@ -1,17 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 function SerachBar() {
-  const [search, setßearch] = useState({
-    text: '',
-    selected: '',
-  });
-  const [module, setModule] = useState();
-  const [recipes, setRecipes] = useState([]);
-
   const { setSearch } = useContext(Context);
 
   const handleSearch = ({ target }) => {
-    setsearch(target.value);
+    setSearch(target.value);
   };
 
   const handleClick = () => {
