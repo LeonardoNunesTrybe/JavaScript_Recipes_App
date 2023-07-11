@@ -29,6 +29,11 @@ export default function Header({ haveBar, title }) {
       )}
 
       <h1 data-testid="page-title">{ title }</h1>
+      {
+        searchBar && (
+          <input type="text" data-testid="search-input" />
+        )
+      }
 
     </div>
   );
