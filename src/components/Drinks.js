@@ -5,7 +5,7 @@ import Footer from './Footer';
 function Drinks() {
   return (
     <div>
-      <Header />
+      <Header haveBar title="Drinks" />
       <div>DRINKS</div>
       <Footer />
     </div>
