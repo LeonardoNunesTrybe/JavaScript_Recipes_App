@@ -3,23 +3,23 @@ import PropTypes from 'prop-types';
 import RecipesContext from './RecipesConext';
 
 function RecipesProvider({ children }) {
-  const [search, setSearch] = useState({
-    text: '',
-    selected: '',
-  });
-  const [module, setModule] = useState();
+  const [searchText, setSearchText] = useState('');
+  const [module, setmodule] = useState();
   const [recipes, setRecipes] = useState([]);
+  const [allRecipes, setAllRecipes] = useState([]);
 
   const context = useMemo(() => (
     {
-      search,
-      setSearch,
+      searchText,
+      setSearchText,
       module,
-      setModule,
+      setmodule,
       recipes,
       setRecipes,
+      allRecipes,
+      setAllRecipes,
     }
-  ), [search, module, recipes]);
+  ), [searchText, module, recipes]);
 
   return (
     <RecipesContext.Provider value={ context }>
