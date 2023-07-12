@@ -38,4 +38,4 @@ describe('Verificando componente Header', () => {
     expect(searchBar).not.toBeInTheDocument();
   });
 });
-// comentario da Jeni
+// comentario da Jeni.
