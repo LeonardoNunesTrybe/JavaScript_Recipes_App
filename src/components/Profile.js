@@ -2,14 +2,11 @@ import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
 
-function Meals() {
+export default function Profile() {
   return (
     <div>
-      <Header haveBar title="Meals" />
-      <div>MEALS</div>
+      <Header haveBar={ false } title="Profile" />
       <Footer />
     </div>
   );
 }
-
-export default Meals;

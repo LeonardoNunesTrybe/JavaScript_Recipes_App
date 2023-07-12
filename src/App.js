@@ -6,22 +6,24 @@ import { BrowserRouter } from 'react-router-dom/cjs/react-router-dom.min';
 import RecipesProvider from './context/RecipesProvider';
 import Login from './components/Login';
 import Meals from './components/Meals';
+import Drinks from './components/Drinks';
+import Profile from './components/Profile';
+import DoneRecipes from './components/DoneRecipes';
+import FavoriteRecipes from './components/FavoriteRecipes';
 
 function App() {
   return (
     <RecipesProvider>
       <BrowserRouter>
         <Switch>
-          {/* precisa deixar uma rota com esse caminho habilitada: */}
           <Route exact path="/" component={ Login } />
-          {/* precisa deixar uma rota com esse caminho habilitada: */}
-          <Route path="/meals" component={ Meals } />
-          {/* <Route path="/drinks/:id-da-receita" component={ Drinks } /> */}
-          {/* <Route path="/meals/:id-da-receita/in-progress" component={ Login } />
-        <Route path="/drinks/:id-da-receita/in-progress" component={ Login } /> */}
-          {/* <Route path="/profile" component={ Profile } />
+          <Route exact path="/meals" component={ Meals } />
+          <Route path="/meals/:id-da-receita" component={ Meals } />
+          <Route exact path="/drinks" component={ Drinks } />
+          <Route path="/drinks/:id-da-receita" component={ Drinks } />
+          <Route path="/profile" component={ Profile } />
           <Route path="/done-recipes" component={ DoneRecipes } />
-          <Route path="/favorite-recipes" component={ FavoriteRecipes } /> */}
+          <Route path="/favorite-recipes" component={ FavoriteRecipes } />
         </Switch>
       </BrowserRouter>
     </RecipesProvider>
