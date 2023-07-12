@@ -10,6 +10,7 @@ function withRouter(component, history) {
     </Router>
   );
 }
+
 export function renderWithRouter(
   component,
   {
