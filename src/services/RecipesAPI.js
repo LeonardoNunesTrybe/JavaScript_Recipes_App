@@ -3,6 +3,7 @@ export async function getMealRecipes() {
   const response = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
   const data = await response.json();
   return data.meals.slice(0, MAX_MEALS);
+  // retorna uma lista com 12 receitas MEAL
 }
 export async function getDrinkRecipes() {
   const MAX_DRINKS = 12;
@@ -10,6 +11,7 @@ export async function getDrinkRecipes() {
   const data = await response.json();
   console.log(data);
   return data.drinks.slice(0, MAX_DRINKS);
+  // retorna uma lista com 12 receitas DRINK
 }
 export async function getMealCategories() {
   const MAX_MEAL_CATEGORIES = 5;
@@ -18,6 +20,7 @@ export async function getMealCategories() {
     const data = await response.json();
     const categories = data.meals.map((category) => category.strCategory);
     return categories.slice(0, MAX_MEAL_CATEGORIES);
+    // retorna uma lista com 5 categorias MEAL
   } catch (error) {
     console.error('Error fetching meal categories:', error);
     return [];
@@ -30,6 +33,7 @@ export async function getDrinkCategories() {
     const data = await response.json();
     const categories = data.drinks.map((category) => category.strCategory);
     return categories.slice(0, MAX_DRINKS_CATEGORIES);
+    // retorna uma lista com 5 categorias DRINK
   } catch (error) {
     console.error('Error fetching drink categories:', error);
     return [];
@@ -41,6 +45,7 @@ export async function getMealRecipesByCategory(category) {
     const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`);
     const data = await response.json();
     return data.meals.slice(0, MAX_MEALS_RECIPES);
+    // retorna uma lista com 5 categorias MEAL
   } catch (error) {
     console.error('Error fetching meal recipes by category:', error);
     return [];

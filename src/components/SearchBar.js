@@ -1,13 +1,14 @@
 import React, { useContext } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import RecipesContext from '../context/RecipesConext';
 
 function SearchBar() {
-  const { searchText, recipes, setRecipes,
-    module, setmodule } = useContext(RecipesContext);
+  const { searchText, setRecipes,
+    module, setmodule, resultsRecipes, setResultsRecipes } = useContext(RecipesContext);
 
   const firstLetter = 'first-letter';
-  // const { pathname } = location;
+  const location = useLocation();
+  const { pathname } = location;
   const history = useHistory();
 
   const searchAPIMeals = async () => {
@@ -18,19 +19,31 @@ function SearchBar() {
       case 'ingredients':
         await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${searchText}`)
           .then((response) => response.json())
-          .then((data) => setRecipes(data.meals));
+          .then((data) => {
+            setRecipes(data.meals);
+            const MAX_MEALS = 12;
+            setResultsRecipes(data.meals.slice(0, MAX_MEALS));
+          });
         break;
       case 'name':
         await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchText}`)
           .then((response) => response.json())
-          .then((data) => setRecipes(data.meals));
+          .then((data) => {
+            setRecipes(data.meals);
+            if (data.meals.length === 1) {
+              history.push(`/meals/${data.meals[0].idMeal}`);
+            }
+          });
         break;
       case firstLetter:
         await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${searchText}`)
           .then((response) => response.json())
-          .then((data) => setRecipes(data.meals));
+          .then((data) => {
+            setRecipes(data.meals);
+            const MAX_MEALS = 12;
+            setResultsRecipes(data.meals.slice(0, MAX_MEALS));
+          });
         break;
-
       default:
         break;
       }
@@ -45,45 +58,51 @@ function SearchBar() {
       case 'ingredients':
         await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${searchText}`)
           .then((response) => response.json())
-          .then((data) => setRecipes(data.drinks));
+          .then((data) => {
+            setRecipes(data.drinks);
+            const MAX_MEALS = 12;
+            setResultsRecipes(data.drinks.slice(0, MAX_MEALS));
+          });
         break;
       case 'name':
         await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchText}`)
           .then((response) => response.json())
-          .then((data) => setRecipes(data.drinks));
+          .then((data) => {
+            setRecipes(data.drinks);
+            if (data.drinks.length === 1) {
+              history.push(`/drinks/${data.drinks[0].idDrink}`);
+            }
+          });
         break;
       case firstLetter:
         await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${searchText}`)
           .then((response) => response.json())
-          .then((data) => setRecipes(data.drinks));
+          .then((data) => {
+            setRecipes(data.drinks);
+            const MAX_MEALS = 12;
+            setResultsRecipes(data.drinks.slice(0, MAX_MEALS));
+          });
         break;
-
       default:
         break;
       }
     }
   };
+  // Beef Lo Mein
   const handleClick = () => {
     switch (pathname) {
     case '/meals':
       searchAPIMeals();
-      if (recipes.length === 1) {
-        history(`/meals/${recipes.id}`);
-      }
       break;
+      // Aquamarine
     case '/drinks':
+      console.log('bebida');
       searchAPIDrinks();
       break;
     default:
       break;
     }
   };
-
-  // const redirectToDetailsPage = () => {
-  //   if (searchAPIMeals === 1 && pathname === '/meals') {
-  //     <Link to="/meals/:id-da-receita"></Link>
-  //   }
-  // }
 
   return (
     <div>
@@ -124,7 +143,42 @@ function SearchBar() {
       >
         SEARCH
       </button>
+      {/* <div>
+        {
+          window.location.pathname === '/meals'
+            ? resultsRecipes.map((result, index) => (
+              <div
+                key={ result.idMeal }
+                data-testid={ `${index}-recipe-card` }
+              >
+                <img
+                  src={ `${result.strMealThumb}` }
+                  alt={ `${result.strMeal}` }
+                  data-testid={ `${index}-card-img` }
+                />
+                <p data-testid={ `${index}-card-name` }>
+                  {result.strMeal}
+                </p>
+              </div>
+            ))
+            : resultsRecipes.map((result, index) => (
+              <div
+                key={ result.idDrink }
+                data-testid={ `${index}-recipe-card` }
+              >
+                <img
+                  src={ `${result.strDrinkThumb}` }
+                  alt={ `${result.strDrinkl}` }
+                  data-testid={ `${index}-card-img` }
+                />
+                <p data-testid={ `${index}-card-name` }>
+                  {result.strDrink}
+                </p>
+              </div>
+            ))
+        }
 
+      </div> */}
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   getMealRecipes,
@@ -8,12 +8,16 @@ import {
   getMealRecipesByCategory,
   getDrinkRecipesByCategory,
 } from '../services/RecipesAPI';
+import RecipesContext from '../context/RecipesConext';
 
 function Recipes() {
-  const [recipes, setRecipes] = useState([]);
+  // const [recipes, setRecipes] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [isFilterActive, setIsFilterActive] = useState(false);
+
+  const { setResultsRecipes, resultsRecipes, recipes, setRecipes } = useContext(RecipesContext);
+
   const fetchRecipes = async () => {
     let fetchedRecipes = [];
     let fetchedCategories = [];
@@ -27,6 +31,7 @@ function Recipes() {
       fetchedCategories = await getDrinkCategories();
     }
     setRecipes(fetchedRecipes.slice(0, MAX_FETCHED));
+    setResultsRecipes(fetchedRecipes.slice(0, MAX_FETCHED));
     setCategories(fetchedCategories.slice(0, MAX_CATEGORIES));
   };
   useEffect(() => {
@@ -79,7 +84,7 @@ function Recipes() {
           </button>
         ))}
       </div>
-      {recipes.map((recipe, index) => (
+      {resultsRecipes.map((recipe, index) => (
         <Link
           to={
             window.location.pathname === '/meals'
