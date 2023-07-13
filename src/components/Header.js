@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 import SearchBar from './SearchBar';
-import RecipesContext from '../context/RecipesConext';
+// import RecipesContext from '../context/RecipesConext';
 
 export default function Header({ haveBar, title }) {
   const [searchBar, setSearchBar] = useState(false);
