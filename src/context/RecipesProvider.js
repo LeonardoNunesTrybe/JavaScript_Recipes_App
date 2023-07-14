@@ -22,7 +22,7 @@ function RecipesProvider({ children }) {
       resultsRecipes,
       setResultsRecipes,
     }
-  ), [searchText, module, recipes]);
+  ), [searchText, module, recipes, resultsRecipes]);
 
   return (
     <RecipesContext.Provider value={ context }>

@@ -11,12 +11,12 @@ import {
 import RecipesContext from '../context/RecipesConext';
 
 function Recipes() {
-  // const [recipes, setRecipes] = useState([]);
+  const [recipes, setRecipes] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [isFilterActive, setIsFilterActive] = useState(false);
 
-  const { setResultsRecipes, resultsRecipes, recipes, setRecipes } = useContext(RecipesContext);
+  const { setResultsRecipes, resultsRecipes } = useContext(RecipesContext);
 
   const fetchRecipes = async () => {
     let fetchedRecipes = [];
@@ -31,6 +31,7 @@ function Recipes() {
       fetchedCategories = await getDrinkCategories();
     }
     setRecipes(fetchedRecipes.slice(0, MAX_FETCHED));
+    console.log(recipes);
     setResultsRecipes(fetchedRecipes.slice(0, MAX_FETCHED));
     setCategories(fetchedCategories.slice(0, MAX_CATEGORIES));
   };
@@ -56,7 +57,7 @@ function Recipes() {
           } else if (window.location.pathname === '/drinks') {
             filteredRecipes = await getDrinkRecipesByCategory(category);
           }
-          setRecipes(filteredRecipes.slice(0, MAX_RECIPES));
+          setResultsRecipes(filteredRecipes.slice(0, MAX_RECIPES));
         } catch (error) {
           console.log('Error fetching filtered recipes:', error);
         }

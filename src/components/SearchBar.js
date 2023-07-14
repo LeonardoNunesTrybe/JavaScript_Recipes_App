@@ -29,9 +29,13 @@ function SearchBar() {
         await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchText}`)
           .then((response) => response.json())
           .then((data) => {
-            setRecipes(data.meals);
-            if (data.meals.length === 1) {
-              history.push(`/meals/${data.meals[0].idMeal}`);
+            if (data.meals === null) {
+              global.alert('Sorry, we haven\'t found any recipes for these filters.');
+            } else {
+              setResultsRecipes(data.meals);
+              if (data.meals.length === 1) {
+                history.push(`/meals/${data.meals[0].idMeal}`);
+              }
             }
           });
         break;
@@ -39,7 +43,6 @@ function SearchBar() {
         await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${searchText}`)
           .then((response) => response.json())
           .then((data) => {
-            setRecipes(data.meals);
             const MAX_MEALS = 12;
             setResultsRecipes(data.meals.slice(0, MAX_MEALS));
           });
@@ -68,9 +71,15 @@ function SearchBar() {
         await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchText}`)
           .then((response) => response.json())
           .then((data) => {
-            setRecipes(data.drinks);
-            if (data.drinks.length === 1) {
-              history.push(`/drinks/${data.drinks[0].idDrink}`);
+            if (data.drinks === null) {
+              global.alert('Sorry, we haven\'t found any recipes for these filters.');
+            } else {
+              setResultsRecipes(data.drinks);
+              if (data.drinks.length === 1) {
+                history.push(`/drinks/${data.drinks[0].idDrink}`);
+              }
+              const MAX_MEALS = 12;
+              setResultsRecipes(data.drinks.slice(0, MAX_MEALS));
             }
           });
         break;
@@ -96,7 +105,6 @@ function SearchBar() {
       break;
       // Aquamarine
     case '/drinks':
-      console.log('bebida');
       searchAPIDrinks();
       break;
     default:
@@ -143,42 +151,6 @@ function SearchBar() {
       >
         SEARCH
       </button>
-      {/* <div>
-        {
-          window.location.pathname === '/meals'
-            ? resultsRecipes.map((result, index) => (
-              <div
-                key={ result.idMeal }
-                data-testid={ `${index}-recipe-card` }
-              >
-                <img
-                  src={ `${result.strMealThumb}` }
-                  alt={ `${result.strMeal}` }
-                  data-testid={ `${index}-card-img` }
-                />
-                <p data-testid={ `${index}-card-name` }>
-                  {result.strMeal}
-                </p>
-              </div>
-            ))
-            : resultsRecipes.map((result, index) => (
-              <div
-                key={ result.idDrink }
-                data-testid={ `${index}-recipe-card` }
-              >
-                <img
-                  src={ `${result.strDrinkThumb}` }
-                  alt={ `${result.strDrinkl}` }
-                  data-testid={ `${index}-card-img` }
-                />
-                <p data-testid={ `${index}-card-name` }>
-                  {result.strDrink}
-                </p>
-              </div>
-            ))
-        }
-
-      </div> */}
     </div>
   );
 }
