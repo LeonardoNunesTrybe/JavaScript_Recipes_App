@@ -28,9 +28,10 @@ describe('1.Verificando componente SearchBar', () => {
     const searchIcon = screen.getByTestId(searchTopBtn);
     userEvent.click(searchIcon);
 
+    const searchBar = screen.findByTestId(searchInput);
+    expect(searchBar).toBeInTheDocument();
+
     await waitFor(() => {
-      const searchBar = screen.getByTestId(searchInput);
-      expect(searchBar).toBeInTheDocument();
       const { pathname } = history.location;
       expect(pathname).toBe('/drinks');
     });
@@ -46,16 +47,16 @@ describe('2.Verifica o alert da busca por letra', () => {
     const searchIcon = screen.getByTestId(searchTopBtn);
     userEvent.click(searchIcon);
 
+    const searchBar = screen.findByTestId(searchInput);
+    userEvent.type(searchBar, 'aa');
+
+    const searchModule = screen.getByTestId(firstLetter);
+    userEvent.click(searchModule);
+
+    const searchBtn = screen.getByTestId(execSearchBtn);
+    userEvent.click(searchBtn);
+
     await waitFor(() => {
-      const searchBar = screen.getByTestId(searchInput);
-      userEvent.type(searchBar, 'aa');
-
-      const searchModule = screen.getByTestId(firstLetter);
-      userEvent.click(searchModule);
-
-      const searchBtn = screen.getByTestId(execSearchBtn);
-      userEvent.click(searchBtn);
-
       expect(global.alert).toHaveBeenCalledWith('Your search must have only 1 (one) character');
     });
   });
@@ -68,16 +69,15 @@ describe('3.Verifica a busca na página Drinks', () => {
     const searchIcon = screen.getByTestId(searchTopBtn);
     userEvent.click(searchIcon);
 
-    await waitFor(() => {
-      const searchBar = screen.getByTestId(searchInput);
-      userEvent.type(searchBar, 'Aquamarine');
+    const searchBar = screen.findByTestId(searchInput);
+    userEvent.type(searchBar, 'Aquamarine');
 
-      const searchModule = screen.getByTestId('name-search-radio');
-      userEvent.click(searchModule);
+    const searchModule = screen.getByTestId('name-search-radio');
+    userEvent.click(searchModule);
 
-      const searchBtn = screen.getByTestId(execSearchBtn);
-      userEvent.click(searchBtn);
-    });
+    const searchBtn = screen.getByTestId(execSearchBtn);
+    userEvent.click(searchBtn);
+
     await waitFor(() => {
       const { pathname } = history.location;
       expect(pathname).toBe('/drinks/178319');
@@ -89,38 +89,35 @@ describe('3.Verifica a busca na página Drinks', () => {
     const searchIcon = screen.getByTestId(searchTopBtn);
     userEvent.click(searchIcon);
 
-    await waitFor(() => {
-      const searchBar = screen.getByTestId(searchInput);
-      userEvent.type(searchBar, 'water');
+    const searchBar = screen.findByTestId(searchInput);
+    userEvent.type(searchBar, 'water');
 
-      const searchModule = screen.getByTestId('ingredient-search-radio');
-      userEvent.click(searchModule);
+    const searchModule = screen.getByTestId('ingredient-search-radio');
+    userEvent.click(searchModule);
 
-      const searchBtn = screen.getByTestId(execSearchBtn);
-      userEvent.click(searchBtn);
-    });
+    const searchBtn = screen.getByTestId(execSearchBtn);
+    userEvent.click(searchBtn);
 
     await waitFor(() => {
       const drink1 = screen.getByText('Adam Sunrise');
       expect(drink1).toBeInTheDocument();
     });
   });
-  test.only('3.3.Testa se colocando uma letra, o app retorna as receitas', async () => {
+  test('3.3.Testa se colocando uma letra, o app retorna as receitas', async () => {
     renderWithRouter(<App />, { initialEntries: ['/drinks'] });
 
     const searchIcon = screen.getByTestId(searchTopBtn);
     userEvent.click(searchIcon);
 
-    await waitFor(() => {
-      const searchBar = screen.getByTestId(searchInput);
-      userEvent.type(searchBar, 'w');
+    const searchBar = screen.findByTestId(searchInput);
+    userEvent.type(searchBar, 'w');
 
-      const searchModule = screen.getByTestId(firstLetter);
-      userEvent.click(searchModule);
+    const searchModule = screen.getByTestId(firstLetter);
+    userEvent.click(searchModule);
 
-      const searchBtn = screen.getByTestId(execSearchBtn);
-      userEvent.click(searchBtn);
-    });
+    const searchBtn = screen.getByTestId(execSearchBtn);
+    userEvent.click(searchBtn);
+
     await waitFor(() => {
       const drink1 = screen.getByText('Whisky Mac');
       expect(drink1).toBeInTheDocument();
@@ -133,13 +130,11 @@ describe('3.Verifica a busca na página Drinks', () => {
     const searchIcon = screen.getByTestId(searchTopBtn);
     userEvent.click(searchIcon);
 
-    await waitFor(() => {
-      const searchBar = screen.getByTestId(searchInput);
-      userEvent.type(searchBar, 'w');
+    const searchBar = screen.findByTestId(searchInput);
+    userEvent.type(searchBar, 'w');
 
-      const searchBtn = screen.getByTestId(execSearchBtn);
-      userEvent.click(searchBtn);
-    });
+    const searchBtn = screen.getByTestId(execSearchBtn);
+    userEvent.click(searchBtn);
 
     await waitFor(() => {
       const drink1 = screen.getByText('GG');
@@ -155,16 +150,16 @@ describe('4.Verifica a busca na página Meals', () => {
     const searchIcon = screen.getByTestId(searchTopBtn);
     userEvent.click(searchIcon);
 
+    const searchBar = screen.findByTestId(searchInput);
+    userEvent.type(searchBar, 'chocolate gateau');
+
+    const searchModule = screen.getByTestId('name-search-radio');
+    userEvent.click(searchModule);
+
+    const searchBtn = screen.getByTestId(execSearchBtn);
+    userEvent.click(searchBtn);
+
     await waitFor(() => {
-      const searchBar = screen.getByTestId(searchInput);
-      userEvent.type(searchBar, 'chocolate gateau');
-
-      const searchModule = screen.getByTestId('name-search-radio');
-      userEvent.click(searchModule);
-
-      const searchBtn = screen.getByTestId(execSearchBtn);
-      userEvent.click(searchBtn);
-
       const { pathname } = history.location;
       expect(pathname).toBe('/meals/52776');
     });
@@ -175,16 +170,16 @@ describe('4.Verifica a busca na página Meals', () => {
     const searchIcon = screen.getByTestId(searchTopBtn);
     userEvent.click(searchIcon);
 
+    const searchBar = screen.findByTestId(searchInput);
+    userEvent.type(searchBar, 'egg');
+
+    const searchModule = screen.getByTestId('ingredient-search-radio');
+    userEvent.click(searchModule);
+
+    const searchBtn = screen.getByTestId(execSearchBtn);
+    userEvent.click(searchBtn);
+
     await waitFor(() => {
-      const searchBar = screen.getByTestId(searchInput);
-      userEvent.type(searchBar, 'egg');
-
-      const searchModule = screen.getByTestId('ingredient-search-radio');
-      userEvent.click(searchModule);
-
-      const searchBtn = screen.getByTestId(execSearchBtn);
-      userEvent.click(searchBtn);
-
       const meal1 = screen.getByText('Beef Lo Mein');
       expect(meal1).toBeInTheDocument();
     });
@@ -195,16 +190,16 @@ describe('4.Verifica a busca na página Meals', () => {
     const searchIcon = screen.getByTestId(searchTopBtn);
     userEvent.click(searchIcon);
 
+    const searchBar = screen.findByTestId(searchInput);
+    userEvent.type(searchBar, 'c');
+
+    const searchModule = screen.getByTestId(firstLetter);
+    userEvent.click(searchModule);
+
+    const searchBtn = screen.getByTestId(execSearchBtn);
+    userEvent.click(searchBtn);
+
     await waiFor(() => {
-      const searchBar = screen.getByTestId(searchInput);
-      userEvent.type(searchBar, 'c');
-
-      const searchModule = screen.getByTestId(firstLetter);
-      userEvent.click(searchModule);
-
-      const searchBtn = screen.getByTestId(execSearchBtn);
-      userEvent.click(searchBtn);
-
       const meal1 = screen.getByText('Chocolate Gateau');
       expect(meal1).toBeInTheDocument();
     });
@@ -215,13 +210,13 @@ describe('4.Verifica a busca na página Meals', () => {
     const searchIcon = screen.getByTestId(searchTopBtn);
     userEvent.click(searchIcon);
 
+    const searchBar = screen.findByTestId(searchInput);
+    userEvent.type(searchBar, 'c');
+
+    const searchBtn = screen.getByTestId(execSearchBtn);
+    userEvent.click(searchBtn);
+
     await waitFor(() => {
-      const searchBar = screen.getByTestId(searchInput);
-      userEvent.type(searchBar, 'c');
-
-      const searchBtn = screen.getByTestId(execSearchBtn);
-      userEvent.click(searchBtn);
-
       const meal1 = screen.getByText('Corba');
       expect(meal1).toBeInTheDocument();
     });
