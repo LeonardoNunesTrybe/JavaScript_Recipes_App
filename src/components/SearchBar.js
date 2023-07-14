@@ -4,7 +4,7 @@ import RecipesContext from '../context/RecipesConext';
 
 function SearchBar() {
   const { searchText, setRecipes,
-    module, setmodule, resultsRecipes, setResultsRecipes } = useContext(RecipesContext);
+    module, setmodule, setResultsRecipes } = useContext(RecipesContext);
 
   const firstLetter = 'first-letter';
   const location = useLocation();
