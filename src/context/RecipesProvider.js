@@ -9,6 +9,7 @@ function RecipesProvider({ children }) {
   const [allRecipes, setAllRecipes] = useState([]);
   const [resultsRecipes, setResultsRecipes] = useState([]);
 
+  // console.log(resultsRecipes);
   const context = useMemo(() => (
     {
       searchText,

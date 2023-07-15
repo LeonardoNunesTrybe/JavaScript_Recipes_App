@@ -2,6 +2,7 @@ import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { renderWithRouter } from '../helpers/renderWith';
 import App from '../App';
+import fetch from '../../cypress/mocks/fetch';
 
 const searchTopBtn = 'search-top-btn';
 const searchInput = 'search-input';
@@ -28,7 +29,7 @@ describe('1.Verificando componente SearchBar', () => {
     const searchIcon = screen.getByTestId(searchTopBtn);
     userEvent.click(searchIcon);
 
-    const searchBar = screen.findByTestId(searchInput);
+    const searchBar = await screen.findByTestId(searchInput);
     expect(searchBar).toBeInTheDocument();
 
     await waitFor(() => {
@@ -47,7 +48,7 @@ describe('2.Verifica o alert da busca por letra', () => {
     const searchIcon = screen.getByTestId(searchTopBtn);
     userEvent.click(searchIcon);
 
-    const searchBar = screen.findByTestId(searchInput);
+    const searchBar = await screen.findByTestId(searchInput);
     userEvent.type(searchBar, 'aa');
 
     const searchModule = screen.getByTestId(firstLetter);
@@ -69,7 +70,7 @@ describe('3.Verifica a busca na página Drinks', () => {
     const searchIcon = screen.getByTestId(searchTopBtn);
     userEvent.click(searchIcon);
 
-    const searchBar = screen.findByTestId(searchInput);
+    const searchBar = await screen.findByTestId(searchInput);
     userEvent.type(searchBar, 'Aquamarine');
 
     const searchModule = screen.getByTestId('name-search-radio');
@@ -89,8 +90,8 @@ describe('3.Verifica a busca na página Drinks', () => {
     const searchIcon = screen.getByTestId(searchTopBtn);
     userEvent.click(searchIcon);
 
-    const searchBar = screen.findByTestId(searchInput);
-    userEvent.type(searchBar, 'water');
+    const searchBar = await screen.findByTestId(searchInput);
+    userEvent.type(searchBar, 'gin');
 
     const searchModule = screen.getByTestId('ingredient-search-radio');
     userEvent.click(searchModule);
@@ -99,7 +100,7 @@ describe('3.Verifica a busca na página Drinks', () => {
     userEvent.click(searchBtn);
 
     await waitFor(() => {
-      const drink1 = screen.getByText('Adam Sunrise');
+      const drink1 = screen.getByText('B-53');
       expect(drink1).toBeInTheDocument();
     });
   });
@@ -109,7 +110,7 @@ describe('3.Verifica a busca na página Drinks', () => {
     const searchIcon = screen.getByTestId(searchTopBtn);
     userEvent.click(searchIcon);
 
-    const searchBar = screen.findByTestId(searchInput);
+    const searchBar = await screen.findByTestId(searchInput);
     userEvent.type(searchBar, 'w');
 
     const searchModule = screen.getByTestId(firstLetter);
@@ -119,18 +120,20 @@ describe('3.Verifica a busca na página Drinks', () => {
     userEvent.click(searchBtn);
 
     await waitFor(() => {
-      const drink1 = screen.getByText('Whisky Mac');
+      const drink1 = screen.getByText('B-53');
       expect(drink1).toBeInTheDocument();
     });
   });
 
   test('3.4.Testa se não selecionando um filtro, o app mantém as receitas existentes', async () => {
+    global.fetch = fetch;
+
     renderWithRouter(<App />, { initialEntries: ['/drinks'] });
 
     const searchIcon = screen.getByTestId(searchTopBtn);
     userEvent.click(searchIcon);
 
-    const searchBar = screen.findByTestId(searchInput);
+    const searchBar = await screen.findByTestId(searchInput);
     userEvent.type(searchBar, 'w');
 
     const searchBtn = screen.getByTestId(execSearchBtn);
@@ -150,7 +153,7 @@ describe('4.Verifica a busca na página Meals', () => {
     const searchIcon = screen.getByTestId(searchTopBtn);
     userEvent.click(searchIcon);
 
-    const searchBar = screen.findByTestId(searchInput);
+    const searchBar = await screen.findByTestId(searchInput);
     userEvent.type(searchBar, 'chocolate gateau');
 
     const searchModule = screen.getByTestId('name-search-radio');
@@ -170,8 +173,8 @@ describe('4.Verifica a busca na página Meals', () => {
     const searchIcon = screen.getByTestId(searchTopBtn);
     userEvent.click(searchIcon);
 
-    const searchBar = screen.findByTestId(searchInput);
-    userEvent.type(searchBar, 'egg');
+    const searchBar = await screen.findByTestId(searchInput);
+    userEvent.type(searchBar, 'beef');
 
     const searchModule = screen.getByTestId('ingredient-search-radio');
     userEvent.click(searchModule);
@@ -180,7 +183,7 @@ describe('4.Verifica a busca na página Meals', () => {
     userEvent.click(searchBtn);
 
     await waitFor(() => {
-      const meal1 = screen.getByText('Beef Lo Mein');
+      const meal1 = screen.getByText('Corba');
       expect(meal1).toBeInTheDocument();
     });
   });
@@ -190,7 +193,7 @@ describe('4.Verifica a busca na página Meals', () => {
     const searchIcon = screen.getByTestId(searchTopBtn);
     userEvent.click(searchIcon);
 
-    const searchBar = screen.findByTestId(searchInput);
+    const searchBar = await screen.findByTestId(searchInput);
     userEvent.type(searchBar, 'c');
 
     const searchModule = screen.getByTestId(firstLetter);
@@ -199,18 +202,18 @@ describe('4.Verifica a busca na página Meals', () => {
     const searchBtn = screen.getByTestId(execSearchBtn);
     userEvent.click(searchBtn);
 
-    await waiFor(() => {
-      const meal1 = screen.getByText('Chocolate Gateau');
+    await waitFor(() => {
+      const meal1 = screen.getByText('Corba');
       expect(meal1).toBeInTheDocument();
     });
   });
-  test('4.4.Testa se colocando uma letra, o app retorna as receitas', async () => {
+  test('4.4.Testa se colocando uma letra e não selecionando o filtro, o app mantém as receitas que já foram renderizadas', async () => {
     renderWithRouter(<App />, { initialEntries: ['/meals'] });
 
     const searchIcon = screen.getByTestId(searchTopBtn);
     userEvent.click(searchIcon);
 
-    const searchBar = screen.findByTestId(searchInput);
+    const searchBar = await screen.findByTestId(searchInput);
     userEvent.type(searchBar, 'c');
 
     const searchBtn = screen.getByTestId(execSearchBtn);

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import {
   getMealRecipes,
   getDrinkRecipes,
@@ -18,20 +18,23 @@ function Recipes() {
 
   const { setResultsRecipes, resultsRecipes } = useContext(RecipesContext);
 
+  const history = useHistory();
+
   const fetchRecipes = async () => {
     let fetchedRecipes = [];
     let fetchedCategories = [];
     const MAX_FETCHED = 12;
     const MAX_CATEGORIES = 5;
-    if (window.location.pathname === '/meals') {
+    if (history.location.pathname === '/meals') {
+      console.log('teste');
       fetchedRecipes = await getMealRecipes();
       fetchedCategories = await getMealCategories();
-    } else if (window.location.pathname === '/drinks') {
+    } else if (history.location.pathname === '/drinks') {
       fetchedRecipes = await getDrinkRecipes();
       fetchedCategories = await getDrinkCategories();
     }
     setRecipes(fetchedRecipes.slice(0, MAX_FETCHED));
-    console.log(recipes);
+    // console.log(recipes);
     setResultsRecipes(fetchedRecipes.slice(0, MAX_FETCHED));
     setCategories(fetchedCategories.slice(0, MAX_CATEGORIES));
   };
@@ -88,7 +91,7 @@ function Recipes() {
       {resultsRecipes.map((recipe, index) => (
         <Link
           to={
-            window.location.pathname === '/meals'
+            history.location.pathname === '/meals'
               ? `/meals/${recipe.idMeal}`
               : `/drinks/${recipe.idDrink}`
           }
@@ -98,17 +101,17 @@ function Recipes() {
           <div>
             <img
               src={
-                window.location.pathname === '/meals'
+                history.location.pathname === '/meals'
                   ? recipe.strMealThumb
                   : recipe.strDrinkThumb
               }
               alt={
-                window.location.pathname === '/meals' ? recipe.strMeal : recipe.strDrink
+                history.location.pathname === '/meals' ? recipe.strMeal : recipe.strDrink
               }
               data-testid={ `${index}-card-img` }
             />
             <p data-testid={ `${index}-card-name` }>
-              {window.location.pathname === '/meals' ? recipe.strMeal : recipe.strDrink}
+              {history.location.pathname === '/meals' ? recipe.strMeal : recipe.strDrink}
             </p>
           </div>
         </Link>
