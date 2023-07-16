@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import {
   getMealRecipes,
   getDrinkRecipes,
@@ -8,25 +8,34 @@ import {
   getMealRecipesByCategory,
   getDrinkRecipesByCategory,
 } from '../services/RecipesAPI';
+import RecipesContext from '../context/RecipesConext';
 
 function Recipes() {
   const [recipes, setRecipes] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [isFilterActive, setIsFilterActive] = useState(false);
+
+  const { setResultsRecipes, resultsRecipes } = useContext(RecipesContext);
+
+  const history = useHistory();
+  console.log(recipes);
   const fetchRecipes = async () => {
     let fetchedRecipes = [];
     let fetchedCategories = [];
     const MAX_FETCHED = 12;
     const MAX_CATEGORIES = 5;
-    if (window.location.pathname === '/meals') {
+    if (history.location.pathname === '/meals') {
+      console.log('teste');
       fetchedRecipes = await getMealRecipes();
       fetchedCategories = await getMealCategories();
-    } else if (window.location.pathname === '/drinks') {
+    } else if (history.location.pathname === '/drinks') {
       fetchedRecipes = await getDrinkRecipes();
       fetchedCategories = await getDrinkCategories();
     }
     setRecipes(fetchedRecipes.slice(0, MAX_FETCHED));
+    // console.log(recipes);
+    setResultsRecipes(fetchedRecipes.slice(0, MAX_FETCHED));
     setCategories(fetchedCategories.slice(0, MAX_CATEGORIES));
   };
   useEffect(() => {
@@ -51,7 +60,7 @@ function Recipes() {
           } else if (window.location.pathname === '/drinks') {
             filteredRecipes = await getDrinkRecipesByCategory(category);
           }
-          setRecipes(filteredRecipes.slice(0, MAX_RECIPES));
+          setResultsRecipes(filteredRecipes.slice(0, MAX_RECIPES));
         } catch (error) {
           console.log('Error fetching filtered recipes:', error);
         }
@@ -79,10 +88,10 @@ function Recipes() {
           </button>
         ))}
       </div>
-      {recipes.map((recipe, index) => (
+      {resultsRecipes.map((recipe, index) => (
         <Link
           to={
-            window.location.pathname === '/meals'
+            history.location.pathname === '/meals'
               ? `/meals/${recipe.idMeal}`
               : `/drinks/${recipe.idDrink}`
           }
@@ -92,17 +101,17 @@ function Recipes() {
           <div>
             <img
               src={
-                window.location.pathname === '/meals'
+                history.location.pathname === '/meals'
                   ? recipe.strMealThumb
                   : recipe.strDrinkThumb
               }
               alt={
-                window.location.pathname === '/meals' ? recipe.strMeal : recipe.strDrink
+                history.location.pathname === '/meals' ? recipe.strMeal : recipe.strDrink
               }
               data-testid={ `${index}-card-img` }
             />
             <p data-testid={ `${index}-card-name` }>
-              {window.location.pathname === '/meals' ? recipe.strMeal : recipe.strDrink}
+              {history.location.pathname === '/meals' ? recipe.strMeal : recipe.strDrink}
             </p>
           </div>
         </Link>

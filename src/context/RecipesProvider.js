@@ -7,7 +7,9 @@ function RecipesProvider({ children }) {
   const [module, setmodule] = useState();
   const [recipes, setRecipes] = useState([]);
   const [allRecipes, setAllRecipes] = useState([]);
+  const [resultsRecipes, setResultsRecipes] = useState([]);
 
+  // console.log(resultsRecipes);
   const context = useMemo(() => (
     {
       searchText,
@@ -18,8 +20,10 @@ function RecipesProvider({ children }) {
       setRecipes,
       allRecipes,
       setAllRecipes,
+      resultsRecipes,
+      setResultsRecipes,
     }
-  ), [searchText, module, recipes]);
+  ), [searchText, module, recipes, resultsRecipes]);
 
   return (
     <RecipesContext.Provider value={ context }>
