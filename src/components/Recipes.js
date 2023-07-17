@@ -19,7 +19,7 @@ function Recipes() {
   const { setResultsRecipes, resultsRecipes } = useContext(RecipesContext);
 
   const history = useHistory();
-  // console.log(recipes);
+  console.log(recipes);
   const fetchRecipes = async () => {
     let fetchedRecipes = [];
     let fetchedCategories = [];
