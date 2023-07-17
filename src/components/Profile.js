@@ -5,7 +5,7 @@ import Footer from './Footer';
 
 export default function Profile() {
   const history = useHistory();
-  const recoveryEmail = JSON.parse(localStorage.getItem('user'));
+  const recoveryEmail = JSON.parse(localStorage.getItem('user')) || 'sem usuário ativo';
 
   const handleClickDoneRecipes = () => {
     history.push('/done-recipes');
