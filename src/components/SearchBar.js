@@ -105,11 +105,11 @@ function SearchBar() {
       searchAPIMeals();
       break;
       // Aquamarine
-    case '/drinks':
+    default:
       searchAPIDrinks();
       break;
-    default:
-      break;
+    // default:
+    //   break;
     }
   };
 
