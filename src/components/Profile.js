@@ -15,6 +15,9 @@ export default function Profile() {
   };
   const handleClickLogout = () => {
     localStorage.removeItem('user');
+    localStorage.removeItem('doneRecipes');
+    localStorage.removeItem('favoriteRecipes');
+    localStorage.removeItem('inProgressRecipes');
     history.push('/');
   };
 
