@@ -10,7 +10,7 @@ export async function getDrinkRecipes() {
   const MAX_DRINKS = 12;
   const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
   const data = await response.json();
-  console.log(data);
+  // console.log(data);
   return data.drinks.slice(0, MAX_DRINKS);
   // retorna uma lista com 12 receitas DRINK
 }

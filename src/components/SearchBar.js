@@ -57,6 +57,7 @@ function SearchBar() {
     if (searchText.length > 1 && module === 'first-letter') {
       global.alert('Your search must have only 1 (one) character');
     } else {
+      console.log(searchText, module);
       switch (module) {
       case 'ingredients':
         await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${searchText}`)
@@ -104,11 +105,11 @@ function SearchBar() {
       searchAPIMeals();
       break;
       // Aquamarine
-    case '/drinks':
+    default:
       searchAPIDrinks();
       break;
-    default:
-      break;
+    // default:
+    //   break;
     }
   };
 
