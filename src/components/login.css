@@ -1,5 +1,5 @@
 body {
-  background: #ffffff;
+  background: white;
   flex-shrink: 0;
   height: 422px;
   width: 360px;
@@ -8,39 +8,39 @@ body {
 .login-text {
   color: #41197f;
   font-size: 20px;
-  text-align: center;
-  width: 182px;
   font-style: italic;
   font-weight: 500;
   letter-spacing: 3.3px;
   line-height: normal;
+  text-align: center;
   text-transform: uppercase;
+  width: 182px;
 }
 
 .login-input {
-  margin: 5px;
   border: 0.5px solid #41197f;
-  padding: 15px;
   border-radius: 5px;
   flex-shrink: 0;
   height: 40px;
+  margin: 5px;
+  padding: 15px;
   width: 276px;
 }
 
 .login-btn {
-  margin: 5px;
   background: #fcc436;
-  padding: 15px;
   border-radius: 5px;
+  color: white;
   flex-shrink: 0;
-  height: 40px;
-  color: #fff;
-  width: 276px;
   font-size: 14px;
-  text-align: center;
   font-style: normal;
   font-weight: 700;
+  height: 40px;
   letter-spacing: 0.42px;
   line-height: normal;
+  margin: 5px;
+  padding: 15px;
+  text-align: center;
   text-transform: uppercase;
+  width: 276px;
 }

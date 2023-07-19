@@ -1,19 +1,19 @@
 .header-box {
   background: #fcdc36;
+  display: flex;
   flex-shrink: 0;
   height: 52px;
-  display: flex;
-  width: 360px;
   justify-content: center;
+  width: 360px;
 }
 
 .header-title {
   color: #41197f;
   flex-shrink: 0;
-  height: 16.972px;
   font-weight: 700;
-  width: 109.131px;
+  height: 16.972px;
   text-transform: uppercase;
+  width: 109.131px;
 
 }
 
@@ -26,34 +26,34 @@
 .page-title {
   color: #41197f;
   font-size: 20px;
-  width: 147px;
   font-style: normal;
-  text-align: center;
   font-weight: 900;
   letter-spacing: 2.1px;
   line-height: normal;
   margin-bottom: 180px;
-  margin-top: 40px;
   margin-left: 100px;
+  margin-top: 40px;
+  text-align: center;
   text-transform: uppercase;
+  width: 147px;
 }
 
 .searchbar-box {
+  align-items: center;
   background: #41197f;
   border-radius: 10px;
-  flex-shrink: 0;
-  height: 88px;
-  color: #ffffff;
-  width: 338px;
+  color: white;
   display: flex;
-  align-items: center;
-  justify-content: space-around;
+  flex-shrink: 0;
   flex-wrap: wrap;
+  height: 88px;
+  justify-content: space-around;
   padding: 20px;
+  width: 338px;
 }
 
 .search-input {
-  background: #fff;
+  background: white;
   border: 1px solid #b1b1b1;
   border-radius: 5px;
   height: 40px;
