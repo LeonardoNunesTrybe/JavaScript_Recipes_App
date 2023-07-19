@@ -5,6 +5,7 @@ import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 import SearchBar from './SearchBar';
 import RecipesContext from '../context/RecipesConext';
+import './header.css';
 
 export default function Header({ haveBar, title }) {
   const [searchBar, setSearchBar] = useState(false);
@@ -18,29 +19,38 @@ export default function Header({ haveBar, title }) {
   };
 
   return (
-    <div>
-      <Link to="/profile">
-        <img src={ profileIcon } alt="profileIcon" data-testid="profile-top-btn" />
-      </Link>
+    <>
 
-      { haveBar && (
-        <label htmlFor="search">
-          <input
-            type="image"
-            src={ searchIcon }
-            alt="searchIcon"
-            data-testid="search-top-btn"
-            id="search"
-            onClick={ showBar }
+      <div className="header-box">
+        <p className="header-title">recipes app</p>
+        <Link to="/profile">
+          <img
+            className="header-icon"
+            src={ profileIcon }
+            alt="profileIcon"
+            data-testid="profile-top-btn"
           />
-        </label>
-      )}
+        </Link>
+        { haveBar && (
+          <label htmlFor="search">
+            <input
+              className="header-icon"
+              type="image"
+              src={ searchIcon }
+              alt="searchIcon"
+              data-testid="search-top-btn"
+              id="search"
+              onClick={ showBar }
+            />
+          </label>
+        )}
+      </div>
 
-      <h1 data-testid="page-title">{ title }</h1>
       {
         searchBar && (
-          <>
+          <div className="search-box">
             <input
+              className="search-input"
               type="text"
               data-testid="search-input"
               value={ searchText }
@@ -48,11 +58,17 @@ export default function Header({ haveBar, title }) {
               placeholder="Search"
             />
             <SearchBar />
-          </>
+          </div>
         )
       }
 
-    </div>
+      <h1
+        className="page-title"
+        data-testid="page-title"
+      >
+        { title }
+      </h1>
+    </>
   );
 }
 

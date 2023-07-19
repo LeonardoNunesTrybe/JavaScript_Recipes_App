@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import './login.css';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -28,23 +29,27 @@ function Login() {
 
   return (
     <div>
-      <label htmlFor="email">Email:</label>
+      <p className="login-text">Login</p>
+      {/* <label htmlFor="email">Email:</label> */}
       <input
+        className="login-input"
         data-testid="email-input"
         value={ email }
         onChange={ (event) => setEmail(event.target.value) }
         type="email"
-        placeholder="Digite seu Login"
+        placeholder="Email"
       />
-      <label htmlFor="password">Senha:</label>
+      {/* <label htmlFor="password">Senha:</label> */}
       <input
+        className="login-input"
         data-testid="password-input"
         value={ password }
         onChange={ (event) => setPassword(event.target.value) }
         type="password"
-        placeholder="Senha"
+        placeholder="Password"
       />
       <button
+        className="login-btn"
         data-testid="login-submit-btn"
         disabled={ !testEmail() || !testPassword() }
         onClick={ submit }

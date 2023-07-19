@@ -1,0 +1,48 @@
+body {
+  width: 360px;
+  height: 422px;
+  flex-shrink: 0;
+  background: #FFF;
+}
+
+.login-text {
+  width: 182px;
+  color: #41197F;
+  text-align: center;
+  font-family: Epilogue;
+  font-size: 20px;
+  font-style: italic;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 3.3px;
+  text-transform: uppercase;
+}
+
+.login-input {
+  margin: 5px;
+  padding: 15px;
+  width: 276px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 5px;
+  border: 0.5px solid #41197F;
+}
+
+.login-btn {
+  margin: 5px;
+  padding: 15px;
+  width: 276px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 5px;
+  background: #FCC436;
+  color: #FFF;
+  text-align: center;
+  font-family: Epilogue;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.42px;
+  text-transform: uppercase;
+}
