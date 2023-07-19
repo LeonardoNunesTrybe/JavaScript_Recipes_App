@@ -12,7 +12,7 @@ function RecipesDetails() {
   // const [isLoading, setIsLoading] = useState(true);
   const [recommendations, setRecommendations] = useState([]);
   const [isRecipeInProgress, setIsRecipeInProgress] = useState(false);
-
+  //
   const fetchRecipeDetails = async () => {
     try {
       if (window.location.pathname.startsWith('/meals')) {

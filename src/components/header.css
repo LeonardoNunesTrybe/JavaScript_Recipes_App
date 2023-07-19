@@ -1,0 +1,62 @@
+.header-box {
+  width: 360px;
+  height: 52px;
+  flex-shrink: 0;
+  background: #FCDC36;
+  display: flex;
+  justify-content: center;
+}
+
+.header-title {
+  width: 109.131px;
+  height: 16.972px;
+  flex-shrink: 0;
+  color: #41197F;
+  text-transform: uppercase;
+  font-weight: 700;
+
+}
+
+.header-icon {
+  width: 26.845px;
+  height: 26.85px;
+  color: #41197F;
+}
+
+.page-title {
+  width: 147px;
+  color: #41197F;
+  text-align: center;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: normal;
+  letter-spacing: 2.1px;
+  text-transform: uppercase;
+  margin-top: 40px;
+  margin-bottom: 180px;
+  margin-left: 100px;
+}
+
+.searchbar-box {
+  width: 338px;
+  height: 88px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: #41197F;
+  color: #FFF;
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.search-input {
+  width: 338px;
+  height: 40px;
+  border-radius: 5px;
+  border: 1px solid #B1B1B1;
+  background: #FFF;
+  margin-top: 140px;
+}

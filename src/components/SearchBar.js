@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import RecipesContext from '../context/RecipesConext';
+import './searchbar.css';
 
 function SearchBar() {
   const { searchText, setRecipes,
@@ -114,44 +115,49 @@ function SearchBar() {
   };
 
   return (
-    <div>
-      <input
-        type="radio"
-        name="search-radio"
-        id="ingredients"
-        value="ingredients"
-        checked={ module === 'ingredients' }
-        onChange={ ({ target }) => setmodule(target.value) }
-        data-testid="ingredient-search-radio"
-      />
-      <label htmlFor="ingredients">Ingredients</label>
-      <input
-        type="radio"
-        name="search-radio"
-        id="name"
-        value="name"
-        checked={ module === 'name' }
-        onChange={ ({ target }) => setmodule(target.value) }
-        data-testid="name-search-radio"
-      />
-      <label htmlFor="name">Name</label>
-      <input
-        type="radio"
-        name="search-radio"
-        id="first-letter"
-        value="first-letter"
-        checked={ module === firstLetter }
-        onChange={ ({ target }) => setmodule(target.value) }
-        data-testid="first-letter-search-radio"
-      />
-      <label htmlFor="first-letter">First letter</label>
+    <div className="searchbar-box">
+      <div className="searchbar-modules">
+        <input
+          type="radio"
+          name="search-radio"
+          id="ingredients"
+          value="ingredients"
+          checked={ module === 'ingredients' }
+          onChange={ ({ target }) => setmodule(target.value) }
+          data-testid="ingredient-search-radio"
+        />
+        <label htmlFor="ingredients">Ingredients</label>
+        <input
+          type="radio"
+          name="search-radio"
+          id="name"
+          value="name"
+          checked={ module === 'name' }
+          onChange={ ({ target }) => setmodule(target.value) }
+          data-testid="name-search-radio"
+        />
+        <label htmlFor="name">Name</label>
+        <input
+          type="radio"
+          name="search-radio"
+          id="first-letter"
+          value="first-letter"
+          checked={ module === firstLetter }
+          onChange={ ({ target }) => setmodule(target.value) }
+          data-testid="first-letter-search-radio"
+        />
+        <label htmlFor="first-letter">First letter</label>
+      </div>
+
       <button
+        className="searchbar-btn"
         type="button"
         data-testid="exec-search-btn"
         onClick={ handleClick }
       >
         SEARCH
       </button>
+
     </div>
   );
 }

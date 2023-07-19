@@ -83,7 +83,7 @@ export async function getDrinkRecipeById(id) {
     return null;
   }
 }
-
+//
 // recipesAPI.js (ou o nome que você está usando)
 const BASE_API_URL = 'https://www.themealdb.com/api/json/v1/1'; // URL da API de comidas
 const BASE_DRINKS_API_URL = 'https://www.thecocktaildb.com/api/json/v1/1'; // URL da API de bebidas

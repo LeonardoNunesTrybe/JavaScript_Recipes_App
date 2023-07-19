@@ -1,0 +1,24 @@
+.searchbar-modules {
+  color: #FFF;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.searchbar-btn {
+  width: 208.159px;
+  height: 25px;
+  flex-shrink: 0;
+  border-radius: 5px;
+  background: #FCC436;
+  width: 187.549px;
+  color: #FFF;
+  text-align: center;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.36px;
+  text-transform: uppercase;
+}
