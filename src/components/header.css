@@ -2,8 +2,8 @@
   background: #fcdc36;
   flex-shrink: 0;
   height: 52px;
-  width: 360px;
   display: flex;
+  width: 360px;
   justify-content: center;
 }
 
@@ -11,8 +11,8 @@
   color: #41197f;
   flex-shrink: 0;
   height: 16.972px;
-  width: 109.131px;
   font-weight: 700;
+  width: 109.131px;
   text-transform: uppercase;
 
 }
@@ -25,17 +25,17 @@
 
 .page-title {
   color: #41197f;
-  width: 147px;
   font-size: 20px;
-  text-align: center;
+  width: 147px;
   font-style: normal;
+  text-align: center;
   font-weight: 900;
   letter-spacing: 2.1px;
   line-height: normal;
   margin-bottom: 180px;
   margin-top: 40px;
-  text-transform: uppercase;
   margin-left: 100px;
+  text-transform: uppercase;
 }
 
 .searchbar-box {
@@ -43,20 +43,20 @@
   border-radius: 10px;
   flex-shrink: 0;
   height: 88px;
-  width: 338px;
   color: #ffffff;
+  width: 338px;
   display: flex;
-  justify-content: space-around;
   align-items: center;
-  padding: 20px;
+  justify-content: space-around;
   flex-wrap: wrap;
+  padding: 20px;
 }
 
 .search-input {
-  background: #ffffff;
+  background: #fff;
   border: 1px solid #b1b1b1;
   border-radius: 5px;
   height: 40px;
-  width: 338px;
   margin-top: 140px;
+  width: 338px;
 }
