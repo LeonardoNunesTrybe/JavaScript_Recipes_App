@@ -1,48 +1,46 @@
 body {
-  width: 360px;
-  height: 422px;
+  background: #ffffff;
   flex-shrink: 0;
-  background: #FFF;
+  height: 422px;
+  width: 360px;
 }
 
 .login-text {
+  color: #41197f;
   width: 182px;
-  color: #41197F;
   text-align: center;
-  font-family: Epilogue;
   font-size: 20px;
   font-style: italic;
   font-weight: 500;
-  line-height: normal;
   letter-spacing: 3.3px;
+  line-height: normal;
   text-transform: uppercase;
 }
 
 .login-input {
   margin: 5px;
   padding: 15px;
+  border: 0.5px solid #41197f;
+  border-radius: 5px;
+  flex-shrink: 0;
   width: 276px;
   height: 40px;
-  flex-shrink: 0;
-  border-radius: 5px;
-  border: 0.5px solid #41197F;
 }
 
 .login-btn {
   margin: 5px;
   padding: 15px;
-  width: 276px;
-  height: 40px;
-  flex-shrink: 0;
+  background: #fcc436;
   border-radius: 5px;
-  background: #FCC436;
-  color: #FFF;
+  flex-shrink: 0;
+  height: 40px;
+  width: 276px;
+  color: #ffffff;
   text-align: center;
-  font-family: Epilogue;
   font-size: 14px;
   font-style: normal;
   font-weight: 700;
-  line-height: normal;
   letter-spacing: 0.42px;
+  line-height: normal;
   text-transform: uppercase;
 }
