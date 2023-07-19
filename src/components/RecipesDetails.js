@@ -106,13 +106,11 @@ function RecipesDetails() {
 
   const handleShareRecipe = () => {
     // Implementar lógica para compartilhar a receita
-    // Por exemplo, você pode exibir uma mensagem de sucesso ou abrir uma janela de compartilhamento nativa do dispositivo
     alert('Receita compartilhada com sucesso!');
   };
 
   const handleFavoriteRecipe = () => {
     // Implementar lógica para favoritar a receita
-    // Por exemplo, você pode adicionar a receita à lista de receitas favoritas no local storage ou em algum banco de dados
     alert('Receita favoritada com sucesso!');
   };
 
