@@ -9,6 +9,7 @@ import Drinks from './components/Drinks';
 import Profile from './components/Profile';
 import DoneRecipes from './components/DoneRecipes';
 import FavoriteRecipes from './components/FavoriteRecipes';
+import RecipesDetails from './components/RecipesDetails';
 
 function App() {
   return (
@@ -16,9 +17,9 @@ function App() {
       <Switch>
         <Route exact path="/" component={ Login } />
         <Route exact path="/meals" component={ Meals } />
-        <Route path="/meals/:id-da-receita" component={ Meals } />
+        <Route path="/meals/:id" component={ RecipesDetails } />
         <Route exact path="/drinks" component={ Drinks } />
-        <Route path="/drinks/:id-da-receita" component={ Drinks } />
+        <Route path="/drinks/:id" component={ RecipesDetails } />
         <Route path="/profile" component={ Profile } />
         <Route path="/done-recipes" component={ DoneRecipes } />
         <Route path="/favorite-recipes" component={ FavoriteRecipes } />

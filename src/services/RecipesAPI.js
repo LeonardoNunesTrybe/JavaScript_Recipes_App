@@ -83,3 +83,33 @@ export async function getDrinkRecipeById(id) {
     return null;
   }
 }
+
+// recipesAPI.js (ou o nome que você está usando)
+const BASE_API_URL = 'https://www.themealdb.com/api/json/v1/1'; // URL da API de comidas
+const BASE_DRINKS_API_URL = 'https://www.thecocktaildb.com/api/json/v1/1'; // URL da API de bebidas
+
+export const getMealRecipeDetails = async (recipeId) => {
+  try {
+    const response = await fetch(`${BASE_API_URL}/lookup.php?i=${recipeId}`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch meal recipe details.');
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+export const getDrinkRecipeDetails = async (recipeId) => {
+  try {
+    const response = await fetch(`${BASE_DRINKS_API_URL}/lookup.php?i=${recipeId}`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch drink recipe details.');
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};

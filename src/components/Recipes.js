@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, Route, Switch, useHistory, useRouteMatch } from 'react-router-dom';
 import {
   getMealRecipes,
   getDrinkRecipes,
@@ -9,6 +9,7 @@ import {
   getDrinkRecipesByCategory,
 } from '../services/RecipesAPI';
 import RecipesContext from '../context/RecipesConext';
+import RecipesDetails from './RecipesDetails';
 
 function Recipes() {
   const [recipes, setRecipes] = useState([]);
@@ -19,6 +20,8 @@ function Recipes() {
   const { setResultsRecipes, resultsRecipes } = useContext(RecipesContext);
 
   const history = useHistory();
+  const match = useRouteMatch();
+
   console.log(recipes);
   const fetchRecipes = async () => {
     let fetchedRecipes = [];
@@ -26,7 +29,7 @@ function Recipes() {
     const MAX_FETCHED = 12;
     const MAX_CATEGORIES = 5;
     if (history.location.pathname === '/meals') {
-      console.log('teste');
+      // console.log('teste');
       fetchedRecipes = await getMealRecipes();
       fetchedCategories = await getMealCategories();
     } else if (history.location.pathname === '/drinks') {
@@ -113,6 +116,9 @@ function Recipes() {
             <p data-testid={ `${index}-card-name` }>
               {history.location.pathname === '/meals' ? recipe.strMeal : recipe.strDrink}
             </p>
+            <Switch>
+              <Route path={ `${match.path}/:id` } component={ RecipesDetails } />
+            </Switch>
           </div>
         </Link>
       ))}
