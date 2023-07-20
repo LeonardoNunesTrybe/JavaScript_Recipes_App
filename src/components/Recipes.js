@@ -10,6 +10,7 @@ import {
 } from '../services/RecipesAPI';
 import RecipesContext from '../context/RecipesConext';
 import RecipesDetails from './RecipesDetails';
+import './recipes.css';
 
 function Recipes() {
   const [recipes, setRecipes] = useState([]);
@@ -74,6 +75,7 @@ function Recipes() {
     <div>
       <div>
         <button
+          id="menu-icon"
           key="All"
           data-testid="All-category-filter"
           onClick={ () => handleCategoryFilter('All') }
@@ -82,6 +84,7 @@ function Recipes() {
         </button>
         {categories.map((category) => (
           <button
+            id="menu-icon"
             key={ category }
             data-testid={ `${category}-category-filter` }
             onClick={ () => handleCategoryFilter(category) }
@@ -91,37 +94,44 @@ function Recipes() {
           </button>
         ))}
       </div>
-      {resultsRecipes.map((recipe, index) => (
-        <Link
-          to={
-            history.location.pathname === '/meals'
-              ? `/meals/${recipe.idMeal}`
-              : `/drinks/${recipe.idDrink}`
-          }
-          key={ index }
-          data-testid={ `${index}-recipe-card` }
-        >
-          <div>
-            <img
-              src={
+      <div>
+        <div className="recipes-area">
+          {resultsRecipes.map((recipe, index) => (
+            <Link
+              to={
                 history.location.pathname === '/meals'
-                  ? recipe.strMealThumb
-                  : recipe.strDrinkThumb
+                  ? `/meals/${recipe.idMeal}`
+                  : `/drinks/${recipe.idDrink}`
               }
-              alt={
-                history.location.pathname === '/meals' ? recipe.strMeal : recipe.strDrink
-              }
-              data-testid={ `${index}-card-img` }
-            />
-            <p data-testid={ `${index}-card-name` }>
-              {history.location.pathname === '/meals' ? recipe.strMeal : recipe.strDrink}
-            </p>
-            <Switch>
-              <Route path={ `${match.path}/:id` } component={ RecipesDetails } />
-            </Switch>
-          </div>
-        </Link>
-      ))}
+              key={ index }
+              data-testid={ `${index}-recipe-card` }
+            >
+              <div className="recipe-card">
+                <img
+                  className="recipe-img "
+                  src={
+                    history.location.pathname === '/meals'
+                      ? recipe.strMealThumb
+                      : recipe.strDrinkThumb
+                  }
+                  alt={
+                    history.location
+                      .pathname === '/meals' ? recipe.strMeal : recipe.strDrink
+                  }
+                  data-testid={ `${index}-card-img` }
+                />
+                <p className="recipe-name " data-testid={ `${index}-card-name` }>
+                  {history.location
+                    .pathname === '/meals' ? recipe.strMeal : recipe.strDrink}
+                </p>
+                <Switch>
+                  <Route path={ `${match.path}/:id` } component={ RecipesDetails } />
+                </Switch>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

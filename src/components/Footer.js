@@ -11,18 +11,22 @@ function Footer() {
       data-testid="footer"
     >
       <Link to="/drinks">
-        <img
-          src={ drinkIcon }
-          alt="Bebida"
-          data-testid="drinks-bottom-btn"
-        />
+        <div className="drink-icon">
+          <img
+            src={ drinkIcon }
+            alt="Bebida"
+            data-testid="drinks-bottom-btn"
+          />
+        </div>
       </Link>
       <Link to="/meals">
-        <img
-          src={ mealIcon }
-          alt="Comida"
-          data-testid="meals-bottom-btn"
-        />
+        <div className="meal-icon">
+          <img
+            src={ mealIcon }
+            alt="Comida"
+            data-testid="meals-bottom-btn"
+          />
+        </div>
       </Link>
     </footer>
   );
