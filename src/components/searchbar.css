@@ -1,5 +1,5 @@
 .searchbar-modules {
-  color: #FFF;
+  color: white;
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
@@ -7,18 +7,17 @@
 }
 
 .searchbar-btn {
-  width: 208.159px;
-  height: 25px;
-  flex-shrink: 0;
+  background: #fcc436;
   border-radius: 5px;
-  background: #FCC436;
-  width: 187.549px;
-  color: #FFF;
-  text-align: center;
+  color: white;
+  flex-shrink: 0;
   font-size: 12px;
   font-style: normal;
   font-weight: 700;
-  line-height: normal;
+  height: 25px;
   letter-spacing: 0.36px;
+  line-height: normal;
+  text-align: center;
   text-transform: uppercase;
+  width: 208.159px;
 }

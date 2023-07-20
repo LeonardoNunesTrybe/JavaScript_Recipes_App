@@ -1,62 +1,62 @@
 .header-box {
-  width: 360px;
-  height: 52px;
-  flex-shrink: 0;
-  background: #FCDC36;
+  background: #fcdc36;
   display: flex;
+  flex-shrink: 0;
+  height: 52px;
   justify-content: center;
+  width: 360px;
 }
 
 .header-title {
-  width: 109.131px;
-  height: 16.972px;
+  color: #41197f;
   flex-shrink: 0;
-  color: #41197F;
-  text-transform: uppercase;
   font-weight: 700;
+  height: 16.972px;
+  text-transform: uppercase;
+  width: 109.131px;
 
 }
 
 .header-icon {
-  width: 26.845px;
+  color: #41197f;
   height: 26.85px;
-  color: #41197F;
+  width: 26.845px;
 }
 
 .page-title {
-  width: 147px;
-  color: #41197F;
-  text-align: center;
+  color: #41197f;
   font-size: 20px;
   font-style: normal;
   font-weight: 900;
-  line-height: normal;
   letter-spacing: 2.1px;
-  text-transform: uppercase;
-  margin-top: 40px;
+  line-height: normal;
   margin-bottom: 180px;
   margin-left: 100px;
+  margin-top: 40px;
+  text-align: center;
+  text-transform: uppercase;
+  width: 147px;
 }
 
 .searchbar-box {
-  width: 338px;
-  height: 88px;
-  flex-shrink: 0;
+  align-items: center;
+  background: #41197f;
   border-radius: 10px;
-  background: #41197F;
-  color: #FFF;
+  color: white;
   display: flex;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  height: 88px;
   justify-content: space-around;
   padding: 20px;
-  align-items: center;
-  flex-wrap: wrap;
+  width: 338px;
 }
 
 .search-input {
-  width: 338px;
-  height: 40px;
+  background: white;
+  border: 1px solid #b1b1b1;
   border-radius: 5px;
-  border: 1px solid #B1B1B1;
-  background: #FFF;
+  height: 40px;
   margin-top: 140px;
+  width: 338px;
 }
