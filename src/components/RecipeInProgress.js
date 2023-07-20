@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useHistory, useLocation, useParams } from 'react-router-dom';
 
 export default function RecipeInProgress() {
   const { id } = useParams();
+  const history = useHistory();
   const location = useLocation();
   const [recipe, setRecipe] = useState('');
   const [checkedI, setCheckedI] = useState([]);
+  // const [items, setItems] = useState([]);
 
   useEffect(() => {
     const fetchRecipes = async () => {
@@ -16,6 +18,7 @@ export default function RecipeInProgress() {
       );
       const data = await results.json();
       setRecipe(data.meals?.[0] || data.drinks?.[0]);
+      // console.log(recipe);
     };
     fetchRecipes();
   }, [id, location.pathname]);
@@ -43,13 +46,32 @@ export default function RecipeInProgress() {
     });
   };
 
-  const renderIngredients = () => {
-    const items = [];
-    const ingredients = 21;
+  const finishRecipe = () => {
+    const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes')) || [];
 
-    for (let index = 0; index <= ingredients; index += 1) {
+    const newDoneRecipe = {
+      id: recipe?.idMeal || recipe?.idDrink,
+      name: recipe?.strMeal || recipe?.strDrink,
+      category: recipe?.strCategory || recipe?.strAlcoholic,
+      alcoholicOrNot: recipe?.strAlcoholic || '',
+      doneDate: new Date().toISOString(),
+      image: recipe?.strMealThumb || recipe?.strDrinkThumb,
+      nationality: recipe?.strArea || '',
+      tags: recipe?.strTags ? recipe?.strTags.split(',') : [],
+      type: recipe?.idMeal ? 'meal' : 'drink',
+    };
+    localStorage.setItem('doneRecipes', JSON.stringify([...doneRecipes, newDoneRecipe]));
+    history.push('/done-recipes');
+  };
+
+  // ingredientes.map((ingrediente) => ingrediente.checked === true )
+
+  const renderIngredients = () => {
+    const ingredients = [];
+    const maxIngredients = 21;
+
+    for (let index = 0; index <= maxIngredients; index += 1) {
       const i = recipe?.[`strIngredient${index}`];
-      console.log(i);
 
       if (i) {
         const iTestId = `${index - 1}-ingredient-step`;
@@ -63,7 +85,7 @@ export default function RecipeInProgress() {
           handleCheckedI(event, index);
         };
 
-        items.push(
+        ingredients.push(
           <label
             htmlFor={ index }
             key={ index }
@@ -81,8 +103,7 @@ export default function RecipeInProgress() {
         );
       }
     }
-    console.log(items);
-    return items;
+    return ingredients;
   };
 
   const {
@@ -95,7 +116,9 @@ export default function RecipeInProgress() {
     strAlcoholic,
   } = recipe;
 
-  console.log(recipe);
+  const allChecked = checkedI.length === renderIngredients().length;
+
+  // console.log(recipe);
 
   return (
     <div>
@@ -115,8 +138,9 @@ export default function RecipeInProgress() {
       <p data-testid="instructions">{strInstructions}</p>
       <button
         type="button"
-        disabled
+        disabled={ !allChecked }
         data-testid="finish-recipe-btn"
+        onClick={ finishRecipe }
       >
         Finish Recipe
       </button>
