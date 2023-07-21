@@ -9,10 +9,11 @@ function RecipesDetails() {
   const { id } = useParams();
   const history = useHistory();
   const [recipeDetails, setRecipeDetails] = useState({});
-  // const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [recommendations, setRecommendations] = useState([]);
   const [isRecipeInProgress, setIsRecipeInProgress] = useState(false);
   //
+  console.log(isLoading);
   const fetchRecipeDetails = async () => {
     try {
       if (window.location.pathname.startsWith('/meals')) {
