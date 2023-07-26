@@ -9,7 +9,7 @@ import Drinks from './components/Drinks';
 import Profile from './components/Profile';
 import DoneRecipes from './components/DoneRecipes';
 import FavoriteRecipes from './components/FavoriteRecipes';
-import RecipesDetails from './components/RecipesDetails';
+import RecipesDetails from './components/RecipeDetails';
 import RecipeInProgress from './components/RecipeInProgress';
 
 function App() {

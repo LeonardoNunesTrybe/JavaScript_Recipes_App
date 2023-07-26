@@ -74,7 +74,7 @@ function RecipesDetails() {
     centerPadding: '20px',
   };
 
-  const handleStartRecipe = () => {
+  /* / const handleStartRecipe = () => {
     if (isRecipeInProgress) {
       const path = window.location.pathname;
       if (path.startsWith('/meals')) {
@@ -103,7 +103,7 @@ function RecipesDetails() {
       localStorage.setItem('inProgressRecipes', JSON.stringify(inProgressRecipes));
       setIsRecipeInProgress(true);
     }
-  };
+  }; / */
 
   const handleShareRecipe = () => {
     // Implementar lógica para compartilhar a receita
@@ -191,7 +191,10 @@ function RecipesDetails() {
             boxShadow: '0 2px 5px rgba(0, 0, 0, 0.3)',
             cursor: 'pointer',
           } }
-          onClick={ handleStartRecipe }
+          // onClick={ handleStartRecipe }
+          onClick={ () => (recipeDetails.strMeal
+            ? history.push(`/meals/${id}/in-progress`)
+            : history.push(`/drinks/${id}/in-progress`)) }
         >
           {isRecipeInProgress ? 'Continue Recipe' : 'Start Recipe'}
         </button>
@@ -201,7 +204,7 @@ function RecipesDetails() {
           style={ {
             position: 'fixed',
             bottom: '0px',
-            left: '38%',
+            left: '20%',
             transform: 'translateX(-50%)',
             padding: '10px 20px',
             backgroundColor: '#007bff',
@@ -219,7 +222,7 @@ function RecipesDetails() {
           style={ {
             position: 'fixed',
             bottom: '0px',
-            left: '61%',
+            left: '80%',
             transform: 'translateX(-50%)',
             padding: '10px 20px',
             backgroundColor: '#007bff',

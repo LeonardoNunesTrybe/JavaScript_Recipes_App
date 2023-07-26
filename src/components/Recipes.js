@@ -9,7 +9,7 @@ import {
   getDrinkRecipesByCategory,
 } from '../services/RecipesAPI';
 import RecipesContext from '../context/RecipesConext';
-import RecipesDetails from './RecipesDetails';
+import RecipesDetails from './RecipeDetails';
 import './recipes.css';
 
 function Recipes() {
